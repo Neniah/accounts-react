@@ -26,6 +26,12 @@
   balance: ->
     @debits() + @credits()
 
+  deleteRecord: (record) ->
+    records = @state.records.slice()
+    index = records.indexOf record
+    records.splice index, 1
+    @replaceState records: records
+
   render: ->
     React.DOM.div
       className: 'records'
