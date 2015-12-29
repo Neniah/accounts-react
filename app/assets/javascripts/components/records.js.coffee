@@ -6,13 +6,20 @@
   getDefaultProps: ->
     records: []
 
+  addRecord: (record) ->
+    records = @state.records.slice()
+    records.push record
+    @setState records: records
+
   render: ->
     React.DOM.div
       className: 'records'
       React.DOM.h2
         className: 'title'
         'Records'
-      React.DOM.table 
+      React.createElement RecordForm, handleNewRecord: @addRecord
+      React.DOM.hr null
+      React.DOM.table
         className: 'table table-bordered'
         React.DOM.thead null,
           React.DOM.tr null,
