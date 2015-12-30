@@ -14,6 +14,15 @@ class RecordsController < ApplicationController
     end
   end
 
+  def update
+    @record = Record.find(params[:id])
+    if @record.update(record_params)
+      render json: @record
+    else
+      render json: @record.erros, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @record = Record.find(params[:id])
     @record.destroy
